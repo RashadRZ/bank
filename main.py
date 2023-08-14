@@ -21,7 +21,6 @@ def call_counter1():
         playsound(f'sounds/{call[3]}.mp3')
         playsound('sounds/to_counter_one.mp3')
         show_next()
-#         pass
 
 
 def call_counter2():
@@ -61,7 +60,7 @@ def show_next():
 # window setup
 root = Tk()
 root.title('Bank')
-root.iconbitmap('images/money.ico')
+root.iconbitmap('images/bank.ico')
 
 app_width = 1280
 app_height = 720
@@ -79,7 +78,7 @@ root.configure(bg='#ADCCCB')
 # UI widget
 top_frame = Frame(root, bg='#ADCCCB')
 header_label = Label(top_frame, text='BANK', font=('Arial', 28, 'bold'), bg='#ADCCCB', fg='white')
-my_image = ImageTk.PhotoImage(Image.open('images/money.png'))
+my_image = ImageTk.PhotoImage(Image.open('images/bank.png'))
 header_image = Label(top_frame, image=my_image, bg='#ADCCCB')
 
 middle_frame = Frame(root, bg='#ADCCCB')
