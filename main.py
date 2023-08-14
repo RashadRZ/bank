@@ -1,7 +1,9 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from playsound import playsound
+import heapq
 
-# heap
+# Heap
 queue = []
 business_n = 1
 personal_n = 1
@@ -9,23 +11,50 @@ personal_n = 1
 
 # UI functions
 def call_counter1():
-    pass
+    if len(queue) != 0:
+        call = heapq.heappop(queue)
+        counter1.configure(text=call)
+        playsound('sounds/queue_number.mp3')
+        playsound(f'sounds/{call[0]}.mp3')
+        playsound(f'sounds/{call[1]}.mp3')
+        playsound(f'sounds/{call[2]}.mp3')
+        playsound(f'sounds/{call[3]}.mp3')
+        playsound('sounds/to_counter_one.mp3')
+        show_next()
 
 
 def call_counter2():
-    pass
+    if len(queue) != 0:
+        call = heapq.heappop(queue)
+        counter2.configure(text=call)
+        playsound('sounds/queue_number.mp3')
+        playsound(f'sounds/{call[0]}.mp3')
+        playsound(f'sounds/{call[1]}.mp3')
+        playsound(f'sounds/{call[2]}.mp3')
+        playsound(f'sounds/{call[3]}.mp3')
+        playsound('sounds/to_counter_two.mp3')
+        show_next()
 
 
-def add_regular():
-    pass
+def add_business():
+    global business_n
+    heapq.heappush(queue, f'B{business_n:03d}')
+    business_n += 1
+    show_next()
 
 
-def add_priority():
-    pass
+def add_personal():
+    global personal_n
+    heapq.heappush(queue, f'P{personal_n:03d}')
+    personal_n += 1
+    show_next()
 
 
 def show_next():
-    pass
+    if len(queue) != 0:
+        next_queue.configure(text=f'{queue[0]}')
+    else:
+        next_queue.configure(text='')
 
 
 # window setup
@@ -63,8 +92,8 @@ next_queue_label = Label(middle_frame, text='NEXT', font=('Arial', 18, 'bold'), 
 next_queue = Button(middle_frame, text='', font=('Arial', 26, 'bold'), bg='#366473', fg='white', borderwidth=0, width=16, height=4, default='active')
 
 bottom_frame = Frame(root, bg='#ADCCCB')
-priority = Button(bottom_frame, command=add_priority, text='BUSINESS', font=('Arial', 18, 'bold'), bg='#366473', fg='white', borderwidth=0, width=11)
-regular = Button(bottom_frame, command=add_regular, text='PERSONAL', font=('Arial', 18, 'bold'), bg='white', fg='#366473', highlightthickness=1, highlightbackground='#366473', highlightcolor='#366473', borderwidth=0, width=11, default='active')
+priority = Button(bottom_frame, command=add_business, text='BUSINESS', font=('Arial', 18, 'bold'), bg='#366473', fg='white', borderwidth=0, width=11)
+regular = Button(bottom_frame, command=add_personal, text='PERSONAL', font=('Arial', 18, 'bold'), bg='white', fg='#366473', highlightthickness=1, highlightbackground='#366473', highlightcolor='#366473', borderwidth=0, width=11, default='active')
 
 # UI positioning
 top_frame.pack(pady=50)
