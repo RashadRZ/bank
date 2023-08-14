@@ -21,6 +21,7 @@ def call_counter1():
         playsound(f'sounds/{call[3]}.mp3')
         playsound('sounds/to_counter_one.mp3')
         show_next()
+#         pass
 
 
 def call_counter2():
